@@ -5,15 +5,16 @@ import {
   updateMessage,
   deleteMessage,
 } from "../controllers/messageController";
+import { authMiddleware } from "../middleware/auth";
 
 const router = Router();
 
 router.get("/", getMessages);
 
-router.post("/", createMessage);
+router.post("/", authMiddleware, createMessage);
 
-router.put("/:id", updateMessage);
+router.put("/:id", authMiddleware, updateMessage);
 
-router.delete("/:id", deleteMessage);
+router.delete("/:id", authMiddleware, deleteMessage);
 
 export default router;
