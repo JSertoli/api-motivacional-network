@@ -41,7 +41,7 @@ export const createUser = async (req: Request, res: Response) => {
     data: { name, email, password: hashed },
   });
 
-  res.status(201).json({ id: user.id, name: user.name, email: user.email });
+  res.status(201).json({ id: user.id, name: user.name, email: user.email, role: user.role });
 };
 
 export const login = async (req: Request, res: Response) => {
@@ -59,5 +59,5 @@ export const login = async (req: Request, res: Response) => {
     expiresIn: "7d",
   });
 
-  res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+  res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
 };

@@ -12,6 +12,7 @@ model User {
   name     String
   email    String    @unique
   password String
+  role     Role      @default(USER)
   messages Message[]
 }
 
@@ -28,6 +29,11 @@ model Message {
   userId     Int
   categoryId Int
 
-  user     User     @relation(fields: [userId], references: [id])
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   category Category @relation(fields: [categoryId], references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
 }

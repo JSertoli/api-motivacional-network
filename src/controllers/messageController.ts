@@ -33,6 +33,7 @@ export const updateMessage = async (req: Request, res: Response) => {
 
 export const deleteMessage = async (req: Request, res: Response) => {
   const { id } = req.params;
+
   await prisma.message.delete({ where: { id: Number(id) } });
   res.json({ message: "Mensagem excluída" });
 };
