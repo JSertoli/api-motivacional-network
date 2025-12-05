@@ -4,7 +4,7 @@ import { verifyToken } from "../middleware/verifyToken";
 import { onlySelf } from "../middleware/onlySelf";
 
 const router = Router();
-router.get("/", getUsers);
+router.get("/", verifyToken, getUsers);
 router.post("/register", createUser);
 router.post("/login", login);
 router.put("/:id", verifyToken, onlySelf, updateUser);

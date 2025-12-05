@@ -5,17 +5,17 @@ import {
   updateMessage,
   deleteMessage,
 } from "../controllers/messageController";
-import { authMiddleware } from "../middleware/auth";
 import { canModify } from "../middleware/canModify";
+import { verifyToken } from "../middleware/verifyToken";
 
 const router = Router();
 
-router.get("/", getMessages);
+router.get("/", verifyToken, getMessages);
 
-router.post("/", authMiddleware, createMessage);
+router.post("/", verifyToken, createMessage);
 
-router.put("/:id/:userId", authMiddleware, canModify, updateMessage);
+router.put("/:id/:userId", verifyToken, canModify, updateMessage);
 
-router.delete("/:id/:userId", authMiddleware, canModify, deleteMessage);
+router.delete("/:id/:userId", verifyToken, canModify, deleteMessage);
 
 export default router;
